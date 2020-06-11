@@ -1,0 +1,40 @@
+#///////////////////////////////////////////////////////////////////////////////////////////////////////
+class CrudClass:    
+    #///////////////////////////////////////////////////////////////////////////////////////////////////////
+    def __init__(self, entidad):
+        self.entidad = entidad
+    #///////////////////////////////////////////////////////////////////////////////////////////////////////
+    def create(data):
+        sql = "INSERT INTO %s SET ?" %  self.entidad
+        resultado  =  await consulta(sql,data)
+        if(!resultado)return false
+        if(resultado.insertId  > 0)return resultado.insertId  
+        else if(resultado.affectedRows > 0)return resultado.affectedRows 
+        else return true
+    #///////////////////////////////////////////////////////////////////////////////////////////////////////
+    def index():        
+        sql = "SELECT * FROM %s" %  self.entidad
+        resultado  =  await consulta(sql)
+        if(resultado === false)return false
+        return resultado
+    #///////////////////////////////////////////////////////////////////////////////////////////////////////
+    def read(obj):       
+        sql = "SELECT * FROM %s WHERE ${Object.keys(obj)[0]} = "${Object.values(obj)[0]}""
+        resultado  =  await consulta(sql)
+        if(resultado === false)return false
+        return resultado
+    #///////////////////////////////////////////////////////////////////////////////////////////////////////
+    def update(data,key = 'id'):
+        sql = "UPDATE %s SET ? WHERE ${key} = "${data[key]}""
+        resultado  =  await consulta(sql,data)
+        if(resultado === false)return false
+        return resultado.affectedRows
+    #///////////////////////////////////////////////////////////////////////////////////////////////////////
+    def delete(obj):
+        sql = "DELETE %s WHERE ${Object.keys(obj)[0]} = "${Object.values(obj)[0]}""
+        resultado  =  await consulta(sql)
+        if(resultado === false)return false
+        return true 
+    #///////////////////////////////////////////////////////////////////////////////////////////////////////
+    #///////////////////////////////////////////////////////////////////////////////////////////////////////
+    module.exports = CrudClass
