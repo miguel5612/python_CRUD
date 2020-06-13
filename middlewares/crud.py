@@ -5,8 +5,8 @@ class Crud:
     def __init__(self, entidad):
         self.entidad = entidad
     #///////////////////////////////////////////////////////////////////////////////////////////////////////
-    def created(self, data):
-        sql = "INSERT INTO %s SET ?" %  self.entidad
+    def create(self, data):
+        sql = "INSERT INTO {entidad} ({keys}) ({values})".format(entidad = self.entidad, keys = tools.keyValueFromArregloWithAph(data)[0], values = tools.keyValueFromArregloWithAph(data)[1])
         print(sql)
         #resultado  =  await consulta(sql,data)
         #if(!resultado)return false
@@ -21,8 +21,8 @@ class Crud:
         #if(resultado === false)return false
         #return resultado
     #///////////////////////////////////////////////////////////////////////////////////////////////////////
-    def read(self, obj):
-        sql = "SELECT * FROM {entidad} WHERE {data}".format(entidad = self.entidad, data = tools.keyValueFromArregloWithAnd(obj))
+    def read(self, data):
+        sql = "SELECT * FROM {entidad} WHERE {data}".format(entidad = self.entidad, data = tools.keyValueFromArregloWithAnd(data))
         print(sql)
         #resultado  =  await consulta(sql)
         #if(resultado === false)return false
@@ -35,8 +35,8 @@ class Crud:
         #if(resultado === false)return false
         #return resultado.affectedRows
     #///////////////////////////////////////////////////////////////////////////////////////////////////////
-    def delete(self, obj):
-        sql = "DELETE FROM {entidad} WHERE {key} = '{value}'".format(entidad = self.entidad, key = list(obj.keys())[0], value = obj[list(obj.keys())[0]])
+    def delete(self, data):
+        sql = "DELETE FROM {entidad} WHERE {key} = '{value}'".format(entidad = self.entidad, key = list(data.keys())[0], value = data[list(data.keys())[0]])
         print(sql)
         #resultado  =  await consulta(sql)
         #if(resultado === false)return false
