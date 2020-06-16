@@ -11,14 +11,15 @@ def index():
 @app.route('/login')
 def login():
     if request.method == 'GET':
+        return send_from_directory('./static/html/','login.html')
+    else:
         oauth.login({'usuario':'lol'})
-        return "hala login"
+        return "login"
 
 @app.route('/register', methods=['GET', 'POST'])
 def create_dev():
     if request.method == 'GET':
-        print("GET")
-        return "get"
+        return send_from_directory('./static/html/','register.html')
     else:
         print("NO ES GET")
         return "NO GET"
