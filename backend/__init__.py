@@ -14,7 +14,7 @@ scheduler = APScheduler()
 
 def create_app():
 
-    app = Flask(__name__, instance_relative_config=False)
+    app = Flask(__name__, instance_relative_config=False, static_folder='/')
 
     app.config.from_object('config.Config')
     # scheduler.init_app(app)
@@ -23,7 +23,7 @@ def create_app():
     # scheduler.start() 
         
     with app.app_context():
-        from . import routes  # Import routes
+        from .routes import router  # Import routes
     #    from . import models
     #    
     #    db.create_all()
