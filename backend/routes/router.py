@@ -1,11 +1,12 @@
 from flask import current_app as app
 from flask import request
+from flask import send_from_directory
 from ..procedures import oauth
 
 @app.route('/')
 def index():
-    print("hicieron un index")
-    return "hala"
+    return send_from_directory('./static/html/','index.html')
+    
 
 @app.route('/login')
 def login():
