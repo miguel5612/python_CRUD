@@ -13,8 +13,9 @@ def login():
     if request.method == 'GET':
         return send_from_directory('./static/html/','login.html')
     else:
-        if(oauth.login(request.form.to_dict())):
-            return "login exitoso!, adelante :D"
+        obj = oauth.login(request.form.to_dict())
+        if(len(obj)>0):
+            return "login exitoso!, adelante " + str(obj[0]['full_name']) + " :D"
         else:
             return "Credenciales erroneas"
 
@@ -23,7 +24,8 @@ def create_dev():
     if request.method == 'GET':
         return send_from_directory('./static/html/','register.html')
     else:
-        if(oauth.register(request.form.to_dict())):
-            return "registro exitoso!, adelante :D"
+        usrId = oauth.register(request.form.to_dict())
+        if(usrId > 0):
+            return "registro exitoso!, adelante :D - Tu usuario tiene el id: " + str(usrId)
         else:
             return "Error desconocido en el registro"

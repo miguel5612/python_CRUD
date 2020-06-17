@@ -30,10 +30,8 @@ class Crud:
         sql = "SELECT * FROM {entidad} WHERE {data}".format(entidad = self.entidad, data = tools.keyValueFromArregloWithAnd(data))
         print(sql)
         result = db.engine.execute(sql)
-        print(result)
-        #resultado  =  await consulta(sql)
-        #if(resultado === false)return false
-        #return resultado
+        a = tools.proxy2obj(result)
+        return a
     #///////////////////////////////////////////////////////////////////////////////////////////////////////
     def update(self, data,key = {'id':0}):
         sql = "UPDATE {entidad} SET {data} WHERE {key} = {value}".format(entidad = self.entidad, data = tools.keyValueFromArreglo(data), key = list(key.keys())[0], value = key[list(key.keys())[0]])

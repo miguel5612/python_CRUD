@@ -25,3 +25,12 @@ def keyValueFromArregloWithAnd(arreglo):
         contador+=1
         if(contador<len(arreglo)): concatenado += ' AND '
     return concatenado
+def proxy2obj(proxy):
+    d, a = {}, []
+    for rowproxy in proxy:
+        # rowproxy.items() returns an array like [(key0, value0), (key1, value1)]
+        for column, value in rowproxy.items():
+            # build up the dictionary
+            d = {**d, **{column: value}}
+        a.append(d)
+    return a
