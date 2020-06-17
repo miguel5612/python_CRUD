@@ -9,7 +9,8 @@ class Crud:
         sql = "INSERT INTO {entidad} ({keys}) VALUES ({values})".format(entidad = self.entidad, keys = tools.keyValueFromArregloWithAph(data, False)[0], values = tools.keyValueFromArregloWithAph(data)[1])
         print('Query de insercion: ',  sql)
         result = db.engine.execute(sql)
-        print(result)
+        print("Se ha insertado el registro con id: ", result.lastrowid)
+        return result.lastrowid
         #resultado  =  await consulta(sql,data)
         #if(!resultado)return false
         #if(resultado.insertId  > 0)return resultado.insertId  
