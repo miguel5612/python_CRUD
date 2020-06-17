@@ -6,7 +6,7 @@ class Crud:
         self.entidad = entidad
     #///////////////////////////////////////////////////////////////////////////////////////////////////////
     def create(self, data):
-        sql = "INSERT INTO {entidad} ({keys}) ({values})".format(entidad = self.entidad, keys = tools.keyValueFromArregloWithAph(data)[0], values = tools.keyValueFromArregloWithAph(data)[1])
+        sql = "INSERT INTO {entidad} ({keys}) VALUES ({values})".format(entidad = self.entidad, keys = tools.keyValueFromArregloWithAph(data)[0], values = tools.keyValueFromArregloWithAph(data)[1])
         print(sql)
         #resultado  =  await consulta(sql,data)
         #if(!resultado)return false
