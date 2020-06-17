@@ -8,18 +8,22 @@ def index():
     return send_from_directory('./static/html/','index.html')
     
 
-@app.route('/login')
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return send_from_directory('./static/html/','login.html')
     else:
-        oauth.login({'usuario':'lol'})
-        return "login"
+        if(oauth.login(request.form.to_dict())):
+            return "login exitoso!, adelante :D"
+        else:
+            return "Credenciales erroneas"
 
 @app.route('/register', methods=['GET', 'POST'])
 def create_dev():
     if request.method == 'GET':
         return send_from_directory('./static/html/','register.html')
     else:
-        print("NO ES GET")
-        return "NO GET"
+        if(oauth.register(request.form.to_dict())):
+            return "registro exitoso!, adelante :D"
+        else:
+            return "Error desconocido en el registro"
