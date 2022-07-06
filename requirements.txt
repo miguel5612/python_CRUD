@@ -5,7 +5,7 @@ filetype==1.0.7
 Flask==1.1.2
 Flask-Migrate==2.5.3
 Flask-SQLAlchemy==2.4.1
-lxml==4.6.5
+lxml==4.9.1
 #migrate==0.3.8
 query-string==2019.4.13
 request==2019.4.13
